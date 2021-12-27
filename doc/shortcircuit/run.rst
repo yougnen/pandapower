@@ -15,7 +15,10 @@ The short circuit calculation is carried out with the calc_sc function:
     net = nw.mv_oberrhein()
     net.ext_grid["s_sc_min_mva"] = 100
     net.ext_grid["rx_min"] = 0.1
-
+    
+    # Error reported: ValueError: Nominal to short-circuit current has to specified in net.sgen.k
+    net["sgen"]["K"] = 1.02
+    
     net.line["endtemp_degree"] = 20
     sc.calc_sc(net, case="min")
     print(net.res_bus_sc)
